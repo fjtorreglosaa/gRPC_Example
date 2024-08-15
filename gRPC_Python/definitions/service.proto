@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+message Job {
+    repeated string duties = 1;
+    int32 priority = 2;
+}
+
+message Person {
+    repeated Job jobs = 1;
+    string name = 2;
+}
+
+message JobApplication {
+    int64 application_date = 1;
+}
+
+message VoidInvocation { }
+
+service Company {
+    rpc Ready(VoidInvocation) returns (VoidInvocation);
+    rpc SendApplication(Person) returns (JobApplication);
+}
